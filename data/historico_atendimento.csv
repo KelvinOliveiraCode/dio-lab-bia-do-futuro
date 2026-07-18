@@ -1,0 +1,13 @@
+id_atendimento,data,canal,assunto,resumo,satisfacao,acao_recomendada,status
+ATD001,2026-01-15,Chat,Investimentos,Cliente perguntou sobre Tesouro Selic e reserva de emergência. Recomendado manter 6 meses de despesas.,5,Abrir conta Tesouro Direto,Concluído
+ATD002,2026-02-03,Email,Cartão de Crédito,Cliente solicitou aumento de limite do cartão Visa Platinum. Análise de renda aprovada.,4,Aumentar limite para R$ 8000,Concluído
+ATD003,2026-02-20,Chat,Investimentos,Cliente dúvida sobre CDB vs Tesouro Selic. Explicado diferença de liquidez e FGC.,5,Manter diversificação atual,Concluído
+ATD004,2026-03-10,Chat,Planejamento,Cliente queria entender como calcular meta de entrada para apartamento. Simulação realizada.,5,Continuar aportes mensais de R$ 1500,Concluído
+ATD005,2026-03-25,Email,Segurança,Cliente reportou tentativa de phishing por email. Orientado sobre segurança digital.,5,Ativar autenticação em dois fatores,Concluído
+ATD006,2026-04-05,Chat,Investimentos,Cliente interessado em FII HGLG11. Explicado funcionamento de dividendos e tributação.,4,Comprar 10 cotas como teste,Concluído
+ATD007,2026-04-18,Chat,Conta Corrente,Cliente questionou taxa de manutenção de conta. Explicado que conta digital é gratuita.,5,Nenhuma ação necessária,Concluído
+ATD008,2026-05-02,Email,Investimentos,Cliente solicitado relatório mensal de investimentos. Enviado por email.,4,Agendar envio automático mensal,Concluído
+ATD009,2026-05-15,Chat,Planejamento,Cliente queria entender se está no caminho certo para objetivos. Análise de progresso positiva.,5,Manter estratégia atual,Concluído
+ATD010,2026-06-01,Chat,Investimentos,Cliente perguntou sobre Previdência Privada VGBL. Explicado vantagens fiscais.,5,Agendar call com especialista,Concluído
+ATD011,2026-06-20,Email,Cartão de Crédito,Cliente solicitou 2ª via do cartão. Solicitação processada.,5,Enviar novo cartão,Concluído
+ATD012,2026-07-05,Chat,Investimentos,Cliente queria diversificar carteira. Recomendado ETF BOVA11 para exposição ao Ibovespa.,4,Comprar 5 cotas BOVA11,Concluído

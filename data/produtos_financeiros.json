@@ -1,0 +1,202 @@
+{
+  "produtos": [
+    {
+      "id": "PROD-001",
+      "nome": "Tesouro Selic 2029",
+      "categoria": "Renda Fixa",
+      "tipo": "Tesouro Direto",
+      "rentabilidade": "Taxa Selic + 0,10% a.a.",
+      "risco": "Baixissimo",
+      "liquidez": "Diaria",
+      "valor_minimo": 100.0,
+      "ir": "Regressivo (22,5% a 15%)",
+      "descricao": "Titulo publico atrelado a Taxa Selic. Ideal para reserva de emergencia e protecao contra inflacao.",
+      "recomendado_para": [
+        "Reserva de Emergencia",
+        "Conservadores",
+        "Curto Prazo"
+      ]
+    },
+    {
+      "id": "PROD-002",
+      "nome": "CDB Banco Inter 120% CDI",
+      "categoria": "Renda Fixa",
+      "tipo": "CDB",
+      "rentabilidade": "120% do CDI",
+      "risco": "Baixo",
+      "liquidez": "Vencimento (2 anos)",
+      "valor_minimo": 1000.0,
+      "ir": "Regressivo (22,5% a 15%)",
+      "descricao": "Certificado de Deposito Bancario com rentabilidade superior ao CDI. Protegido pelo FGC ate R$ 250 mil.",
+      "recomendado_para": [
+        "Renda Fixa",
+        "Medio Prazo",
+        "Moderados"
+      ]
+    },
+    {
+      "id": "PROD-003",
+      "nome": "FII HGLG11",
+      "categoria": "Renda Variavel",
+      "tipo": "FII - Tijolo",
+      "rentabilidade": "Dividendos mensais ~0,7% a.m.",
+      "risco": "Medio",
+      "liquidez": "Diaria (B3)",
+      "valor_minimo": 1.0,
+      "ir": "Isento para pessoa fisica (dividendos); 15% sobre ganho de capital",
+      "descricao": "Fundos de Investimento Imobiliario que investe em galpoes logisticos. Recebe alugueis e distribui mensalmente.",
+      "recomendado_para": [
+        "Renda Passiva",
+        "Diversificacao",
+        "Moderados"
+      ]
+    },
+    {
+      "id": "PROD-004",
+      "nome": "Acoes PETR4",
+      "categoria": "Renda Variavel",
+      "tipo": "Acoes",
+      "rentabilidade": "Variavel (dividendos + valorizacao)",
+      "risco": "Alto",
+      "liquidez": "Diaria (B3)",
+      "valor_minimo": 1.0,
+      "ir": "Isento ate R$ 20 mil/mes; 15% sobre ganho de capital",
+      "descricao": "Acoes ordinarias da Petrobras. Empresa estatal com forte presenca no setor de energia e dividendos consistentes.",
+      "recomendado_para": [
+        "Longo Prazo",
+        "Dividendos",
+        "Arrojados"
+      ]
+    },
+    {
+      "id": "PROD-005",
+      "nome": "Previdencia Privada VGBL",
+      "categoria": "Previdencia",
+      "tipo": "VGBL",
+      "rentabilidade": "Variavel conforme fundo escolhido",
+      "risco": "Variavel",
+      "liquidez": "Resgate sujeito a IOF e IR",
+      "valor_minimo": 100.0,
+      "ir": "Tabela regressiva (0% a 10% sobre rendimento)",
+      "descricao": "Vida Gerador de Beneficio Livre. Indicado para quem nao declara IR completo ou busca complementar aposentadoria.",
+      "recomendado_para": [
+        "Aposentadoria",
+        "Longo Prazo",
+        "Todos os Perfis"
+      ]
+    },
+    {
+      "id": "PROD-006",
+      "nome": "Fundo DI XP",
+      "categoria": "Renda Fixa",
+      "tipo": "Fundo de Investimento",
+      "rentabilidade": "99% do CDI",
+      "risco": "Baixo",
+      "liquidez": "D+1",
+      "valor_minimo": 100.0,
+      "ir": "Regressivo (22,5% a 15%)",
+      "descricao": "Fundo de investimento em renda fixa de curto prazo. Alta liquidez, ideal para reserva de emergencia.",
+      "recomendado_para": [
+        "Reserva de Emergencia",
+        "Curto Prazo",
+        "Conservadores"
+      ]
+    },
+    {
+      "id": "PROD-007",
+      "nome": "ETF BOVA11",
+      "categoria": "Renda Variavel",
+      "tipo": "ETF",
+      "rentabilidade": "Acompanha Ibovespa",
+      "risco": "Alto",
+      "liquidez": "Diaria (B3)",
+      "valor_minimo": 1.0,
+      "ir": "15% sobre ganho de capital (DARF)",
+      "descricao": "Exchange Traded Fund que replica o indice Ibovespa. Diversificacao em uma unica aplicacao.",
+      "recomendado_para": [
+        "Diversificacao",
+        "Longo Prazo",
+        "Arrojados"
+      ]
+    },
+    {
+      "id": "PROD-008",
+      "nome": "CDB Banco Inter 100% CDI Liq. Diaria",
+      "categoria": "Renda Fixa",
+      "tipo": "CDB",
+      "rentabilidade": "100% do CDI",
+      "risco": "Baixo",
+      "liquidez": "Diaria",
+      "valor_minimo": 100.0,
+      "ir": "Regressivo (22,5% a 15%)",
+      "descricao": "CDB com liquidez diaria e rentabilidade de 100% do CDI. Ideal para reserva de emergencia com maior rentabilidade que poupanca.",
+      "recomendado_para": [
+        "Reserva de Emergencia",
+        "Curto Prazo",
+        "Conservadores"
+      ]
+    }
+  ],
+  "educacao": [
+    {
+      "id": "EDU-001",
+      "titulo": "Como Montar uma Reserva de Emergencia",
+      "nivel": "Iniciante",
+      "duracao": "15 min",
+      "formato": "Artigo",
+      "tags": [
+        "Reserva de Emergencia",
+        "Seguranca Financeira",
+        "Tesouro Selic"
+      ]
+    },
+    {
+      "id": "EDU-002",
+      "titulo": "Entendendo o CDI e seus Investimentos",
+      "nivel": "Iniciante",
+      "duracao": "10 min",
+      "formato": "Video",
+      "tags": [
+        "Renda Fixa",
+        "CDI",
+        "CDB"
+      ]
+    },
+    {
+      "id": "EDU-003",
+      "titulo": "Fundos Imobiliarios para Iniciantes",
+      "nivel": "Intermediario",
+      "duracao": "20 min",
+      "formato": "Artigo + Quiz",
+      "tags": [
+        "FII",
+        "Renda Passiva",
+        "Diversificacao"
+      ]
+    },
+    {
+      "id": "EDU-004",
+      "titulo": "Como Declarar Investimentos no IR",
+      "nivel": "Intermediario",
+      "duracao": "25 min",
+      "formato": "Video + Checklist",
+      "tags": [
+        "Imposto de Renda",
+        "Declaracao",
+        "Obrigacoes Fiscais"
+      ]
+    },
+    {
+      "id": "EDU-005",
+      "titulo": "Analise Fundamentalista de Acoes",
+      "nivel": "Avancado",
+      "duracao": "40 min",
+      "formato": "Artigo + Planilha",
+      "tags": [
+        "Acoes",
+        "Analise",
+        "Longo Prazo"
+      ]
+    }
+  ]
+}

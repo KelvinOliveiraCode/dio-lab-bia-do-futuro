@@ -1,0 +1,90 @@
+id_transacao,data,tipo,categoria,descricao,valor,saldo_apos
+TX001,2026-01-05,ENTRADA,Salário,Salário Mensal,8500.00,8500.00
+TX002,2026-01-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,6300.00
+TX003,2026-01-08,SAIDA,Supermercado,Compras Mensais,-850.00,5450.00
+TX004,2026-01-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,5150.00
+TX005,2026-01-12,ENTRADA,Freelance,Projeto Web Design,1200.00,6350.00
+TX006,2026-01-15,SAIDA,Utilidades,Conta de Luz,-180.00,6170.00
+TX007,2026-01-15,SAIDA,Utilidades,Conta de Água,-95.00,6075.00
+TX008,2026-01-18,SAIDA,Lazer,Cinema e Jantar,-320.00,5755.00
+TX009,2026-01-20,SAIDA,Saúde,Plano de Saúde,-450.00,5305.00
+TX010,2026-01-22,ENTRADA,Investimento,Dividendos FII,-,5305.00
+TX011,2026-01-25,SAIDA,Streaming,Netflix e Spotify,-55.00,5250.00
+TX012,2026-01-28,SAIDA,Alimentação,Ifood,-120.00,5130.00
+TX013,2026-02-05,ENTRADA,Salário,Salário Mensal,8500.00,13630.00
+TX014,2026-02-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,11430.00
+TX015,2026-02-08,SAIDA,Supermercado,Compras Mensais,-920.00,10510.00
+TX016,2026-02-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,10210.00
+TX017,2026-02-12,ENTRADA,Freelance,Consultoria UX,800.00,11010.00
+TX018,2026-02-14,SAIDA,Lazer,Presente Dia dos Namorados,-250.00,10760.00
+TX019,2026-02-15,SAIDA,Utilidades,Conta de Luz,-210.00,10550.00
+TX020,2026-02-15,SAIDA,Utilidades,Conta de Água,-98.00,10452.00
+TX021,2026-02-18,SAIDA,Saúde,Consulta Dentista,-200.00,10252.00
+TX022,2026-02-20,SAIDA,Saúde,Plano de Saúde,-450.00,9802.00
+TX023,2026-02-22,SAIDA,Investimento,Aporte Tesouro Direto,-1000.00,8802.00
+TX024,2026-02-25,SAIDA,Streaming,Netflix e Spotify,-55.00,8747.00
+TX025,2026-02-28,SAIDA,Alimentação,Restaurante,-180.00,8567.00
+TX026,2026-03-05,ENTRADA,Salário,Salário Mensal,8500.00,17067.00
+TX027,2026-03-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,14867.00
+TX028,2026-03-08,SAIDA,Supermercado,Compras Mensais,-780.00,14087.00
+TX029,2026-03-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,13787.00
+TX030,2026-03-12,ENTRADA,Freelance,Design de Logo,500.00,14287.00
+TX031,2026-03-14,SAIDA,Lazer,Viagem Fim de Semana,-800.00,13487.00
+TX032,2026-03-15,SAIDA,Utilidades,Conta de Luz,-195.00,13292.00
+TX033,2026-03-15,SAIDA,Utilidades,Conta de Água,-102.00,13190.00
+TX034,2026-03-18,SAIDA,Saúde,Plano de Saúde,-450.00,12740.00
+TX035,2026-03-20,SAIDA,Investimento,Aporte CDB,-1500.00,11240.00
+TX036,2026-03-22,SAIDA,Streaming,Netflix e Spotify,-55.00,11185.00
+TX037,2026-03-25,SAIDA,Alimentação,Delivery,-95.00,11090.00
+TX038,2026-03-28,SAIDA,Educação,Curso Online Python,-350.00,10740.00
+TX039,2026-04-05,ENTRADA,Salário,Salário Mensal,8500.00,19240.00
+TX040,2026-04-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,17040.00
+TX041,2026-04-08,SAIDA,Supermercado,Compras Mensais,-890.00,16150.00
+TX042,2026-04-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,15850.00
+TX043,2026-04-12,ENTRADA,Freelance,Projeto Mobile,1500.00,17350.00
+TX044,2026-04-14,SAIDA,Lazer,Show,-400.00,16950.00
+TX045,2026-04-15,SAIDA,Utilidades,Conta de Luz,-205.00,16745.00
+TX046,2026-04-15,SAIDA,Utilidades,Conta de Água,-100.00,16645.00
+TX047,2026-04-18,SAIDA,Saúde,Plano de Saúde,-450.00,16195.00
+TX048,2026-04-20,SAIDA,Investimento,Aporte Tesouro Direto,-2000.00,14195.00
+TX049,2026-04-22,SAIDA,Streaming,Netflix e Spotify,-55.00,14140.00
+TX050,2026-04-25,SAIDA,Alimentação,Restaurante,-210.00,13930.00
+TX051,2026-04-28,SAIDA,Educação,Livro Técnico,-120.00,13810.00
+TX052,2026-05-05,ENTRADA,Salário,Salário Mensal,8500.00,22310.00
+TX053,2026-05-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,20110.00
+TX054,2026-05-08,SAIDA,Supermercado,Compras Mensais,-950.00,19160.00
+TX055,2026-05-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,18860.00
+TX056,2026-05-12,ENTRADA,Freelance,Revisão de Código,600.00,19460.00
+TX057,2026-05-14,SAIDA,Lazer,Passeio Parque,-80.00,19380.00
+TX058,2026-05-15,SAIDA,Utilidades,Conta de Luz,-220.00,19160.00
+TX059,2026-05-15,SAIDA,Utilidades,Conta de Água,-105.00,19055.00
+TX060,2026-05-18,SAIDA,Saúde,Plano de Saúde,-450.00,18605.00
+TX061,2026-05-20,SAIDA,Investimento,Aporte CDB,-1500.00,17105.00
+TX062,2026-05-22,SAIDA,Streaming,Netflix e Spotify,-55.00,17050.00
+TX063,2026-05-25,SAIDA,Alimentação,Delivery,-140.00,16910.00
+TX064,2026-05-28,SAIDA,Educação,Workshop IA,-200.00,16710.00
+TX065,2026-06-05,ENTRADA,Salário,Salário Mensal,8500.00,25210.00
+TX066,2026-06-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,23010.00
+TX067,2026-06-08,SAIDA,Supermercado,Compras Mensais,-880.00,22130.00
+TX068,2026-06-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,21830.00
+TX069,2026-06-12,ENTRADA,Freelance,Design UI/UX,900.00,22730.00
+TX070,2026-06-14,SAIDA,Lazer,Cinema,-60.00,22670.00
+TX071,2026-06-15,SAIDA,Utilidades,Conta de Luz,-230.00,22440.00
+TX072,2026-06-15,SAIDA,Utilidades,Conta de Água,-110.00,22330.00
+TX073,2026-06-18,SAIDA,Saúde,Plano de Saúde,-450.00,21880.00
+TX074,2026-06-20,SAIDA,Investimento,Aporte Tesouro Direto,-2500.00,19380.00
+TX075,2026-06-22,SAIDA,Streaming,Netflix e Spotify,-55.00,19325.00
+TX076,2026-06-25,SAIDA,Alimentação,Restaurante,-250.00,19075.00
+TX077,2026-06-28,SAIDA,Educação,Certificação DIO,-150.00,18925.00
+TX078,2026-07-05,ENTRADA,Salário,Salário Mensal,8500.00,27425.00
+TX079,2026-07-06,SAIDA,Aluguel,Pagamento Aluguel,-2200.00,25225.00
+TX080,2026-07-08,SAIDA,Supermercado,Compras Mensais,-910.00,24315.00
+TX081,2026-07-10,SAIDA,Transporte,Passagem Mensal Metro,-300.00,24015.00
+TX082,2026-07-12,ENTRADA,Freelance,Projeto Dashboard,1100.00,25115.00
+TX083,2026-07-14,SAIDA,Lazer,Parque de Diversões,-150.00,24965.00
+TX084,2026-07-15,SAIDA,Utilidades,Conta de Luz,-240.00,24725.00
+TX085,2026-07-15,SAIDA,Utilidades,Conta de Água,-115.00,24610.00
+TX086,2026-07-18,SAIDA,Saúde,Plano de Saúde,-450.00,24160.00
+TX087,2026-07-20,SAIDA,Investimento,Aporte CDB,-2000.00,22160.00
+TX088,2026-07-22,SAIDA,Streaming,Netflix e Spotify,-55.00,22105.00
+TX089,2026-07-25,SAIDA,Alimentação,Delivery,-130.00,21975.00

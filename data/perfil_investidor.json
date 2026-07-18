@@ -1,0 +1,77 @@
+{
+  "cliente": {
+    "id": "CLI-001",
+    "nome": "Ana Carolina Mendes",
+    "idade": 29,
+    "profissao": "Desenvolvedora de Software",
+    "renda_mensal": 8500.00,
+    "renda_extra_media": 1000.00,
+    "cidade": "São Paulo",
+    "estado_civil": "Solteira",
+    "dependentes": 0
+  },
+  "perfil_risco": {
+    "tipo": "Moderado",
+    "score": 65,
+    "descricao": "Aceita riscos calculados buscando retornos superiores à renda fixa, mas preserva parte do capital em investimentos conservadores.",
+    "horizonte_tempo": "Médio (3-5 anos)",
+    "tolerancia_perda": "Até 15% do capital investido"
+  },
+  "objetivos": [
+    {
+      "id": "OBJ-01",
+      "titulo": "Reserva de Emergência",
+      "valor_meta": 25000.00,
+      "valor_atual": 15000.00,
+      "prazo_meses": 12,
+      "prioridade": "Alta",
+      "descricao": "Manter 6 meses de despesas fixas em investimentos de alta liquidez."
+    },
+    {
+      "id": "OBJ-02",
+      "titulo": "Entrada para Apartamento",
+      "valor_meta": 80000.00,
+      "valor_atual": 22000.00,
+      "prazo_meses": 48,
+      "prioridade": "Alta",
+      "descricao": "Juntar entrada de 20% para compra do primeiro imóvel."
+    },
+    {
+      "id": "OBJ-03",
+      "titulo": "Aposentadoria Complementar",
+      "valor_meta": 500000.00,
+      "valor_atual": 8500.00,
+      "prazo_meses": 360,
+      "prioridade": "Média",
+      "descricao": "Construir patrimônio para complementar a aposentadoria do INSS."
+    },
+    {
+      "id": "OBJ-04",
+      "titulo": "Viagem Internacional",
+      "valor_meta": 15000.00,
+      "valor_atual": 3000.00,
+      "prazo_meses": 18,
+      "prioridade": "Baixa",
+      "descricao": "Viagem de 3 semanas pela Europa em 2028."
+    }
+  ],
+  "preferencias": {
+    "canais_contato": ["Chat", "Email"],
+    "horario_preferido": "19h-21h",
+    "idioma": "Português",
+    "notificacoes": true,
+    "automatizacao_investimentos": true
+  },
+  "conhecimento_financeiro": {
+    "nivel": "Intermediário",
+    "experiencia_investimentos": ["Tesouro Direto", "CDB", "FII", "Ações"],
+    "interesse_aprender": ["Fundos de Investimento", "Previdência Privada", "Day Trade"]
+  },
+  "dados_bancarios": {
+    "banco_principal": "Banco Inter",
+    "conta_corrente": true,
+    "conta_poupanca": false,
+    "conta_investimento": true,
+    "cartoes": ["Crédito Visa Platinum", "Débito"]
+  }
+}
