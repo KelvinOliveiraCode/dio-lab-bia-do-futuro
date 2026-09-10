@@ -1,217 +1,156 @@
-# 🤖 BIA — Banco Inteligente Assistente
+# dio-lab-bia-do-futuro — BIA, Banco Inteligente Assistente
 
-> **Agente Financeiro Inteligente com IA Generativa**  
-> Projeto desenvolvido para o Lab "Construa Seu Assistente Virtual Com Inteligência Artificial" da [DIO](https://www.dio.me/)
+![Status](https://img.shields.io/badge/Status-Concludido-2EA44F?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![LangChain-Ready](https://img.shields.io/badge/LangChain-Ready-1C3C44?style=flat-square)
+![DIO](https://img.shields.io/badge/DIO-Lab-9046F5?style=flat-square)
 
----
-
-## 👨‍💻 Autor
-
-**Kelvin Oliveira**  
-[LinkedIn](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/) | [GitHub](https://github.com/KelvinOliveiraCode)
-
----
-
-## 🎯 Sobre o Projeto
-
-**BIA** é um assistente virtual financeiro que utiliza IA generativa para educar e orientar jovens profissionais na jornada de organização financeira e investimentos. Diferente de chatbots tradicionais reativos, BIA é **proativa, personalizada e segura** — antecipando necessidades com base nos dados reais do cliente.
-
-### O que BIA faz:
-- 💰 **Analisa gastos** com base no histórico de transações
-- 📈 **Recomenda investimentos** alinhados ao perfil de risco
-- 🎯 **Acompanha metas** financeiras com projeções
-- 📚 **Educa** sobre conceitos financeiros de forma simples
-- 🔒 **Garante segurança** — nunca inventa produtos ou dados
+**BIA — Banco Inteligente Assistente** é um agente financeiro conversacional construído no Lab "Construa Seu Assistente Virtual Com Inteligência Artificial" da DIO ("Agente Financeiro Inteligente com IA Generativa"). A stack é Python 3.9+, Streamlit, pandas e JSON/CSV, com o módulo de linguagem isolado por trás de uma interface de LLM simulado — pronto para plugar Gemini/OpenAI via LangChain sem tocar na lógica de negócio. O diferencial técnico do projeto não é o chat em si, mas as quatro camadas anti-alucinação que cercam o agente: system prompt com regras de ouro, pré-processamento que bloqueia dados sensíveis, pós-processamento que valida todo produto citado contra a base real e fallback honesto de baixa confiança. Em um domínio regulado como finanças, isso é o que separa um demo de um sistema honesto.
 
 ---
 
-## 🏗️ Arquitetura
+## 🇧🇷 Português
+
+### O que é
+
+BIA é um assistente financeiro conversacional que opera sobre dados reais (mockados) de uma cliente: perfil, transações, metas, histórico de atendimentos e catálogo de produtos. Ele contextualiza cada resposta com esses dados, recomenda produtos compatíveis com o perfil de risco, acompanha metas com projeções e educa em conceitos financeiros — sem nunca prometer rentabilidade, sem inventar produtos ou taxas, sempre com disclaimer e sempre oferecendo encaminhamento humano.
+
+### Base de conhecimento
+
+| Arquivo | Conteúdo |
+|---|---|
+| `data/perfil_investidor.json` | Perfil Ana Carolina Mendes: 29 anos, dev, R$ 8.500/mês + ~R$ 1.000 freelances, risco moderado (score 65), São Paulo |
+| `data/transacoes.csv` | 89 transações Jan–Jul/2026 |
+| `data/produtos_financeiros.json` | 8 produtos financeiros + 5 conteúdos educacionais |
+| `data/historico_atendimento.csv` | 12 atendimentos anteriores |
+
+Metas financeiras da cliente: reserva de emergência R$ 25 mil (60% concluída), entrada de apartamento R$ 80 mil (27,5%, prazo 48 meses), aposentadoria R$ 500 mil (1,7%), viagem R$ 15 mil (20%).
+
+### Quatro camadas anti-alucinação
+
+1. **System prompt com regras de ouro** — contextualiza com dados reais, nunca promete rentabilidade, sempre exibe disclaimer, oferece atendimento humano, nunca inventa produtos ou taxas.
+2. **Pré-processamento** — bloqueia entradas com dados sensíveis (CPF, senha, cartão) antes de chegarem ao modelo.
+3. **Pós-processamento** — valida todo produto citado na resposta contra a base `produtos_financeiros.json`; produto fora da base não é entregue.
+4. **Fallback honesto** — em baixa confiança, BIA admite "não sei" em vez de especular.
+
+### Arquitetura em 6 passos
+
+O desenvolvimento seguiu 6 passos documentados, cada um com seu material em `docs/`:
+
+| Passo | Documento | Entrega |
+|---|---|---|
+| 1 | `docs/01-documentacao-agente.md` | Documentação do agente |
+| 2 | `docs/02-base-conhecimento.md` | Base de conhecimento |
+| 3 | `docs/03-prompts.md` | Prompts |
+| 4 | `src/app.py` | Aplicação funcional |
+| 5 | `docs/04-metricas.md` | Métricas de avaliação |
+| 6 | `docs/05-pitch.md` | Pitch de 3 minutos |
 
 ```
-Usuario (Chat/App)
+Usuario (Chat Streamlit)
     |
     v
-[ Streamlit Interface ]  <--->  [ Python Orquestrador ]
-    |                                    |
-    |                            [ Analise de Dados ]
-    |                                    |
-    +----------------------------+-------+-------+
-                                 |               |
-                         [ Base de Conhecimento ]  [ LLM (Simulado) ]
-                         - transacoes.csv         - Respostas
-                         - perfil_investidor.json   contextualizadas
-                         - produtos_financeiros.json
-                         - historico_atendimento.csv
+[ Pre-processamento ] --> bloqueio de dados sensiveis
+    |
+    v
+[ LLM (simulado, pronto p/ Gemini/OpenAI + LangChain) ]
+    |
+    v
+[ Pos-processamento ] --> validacao de produtos contra a base
+    |
+    v
+[ Resposta contextualizada / Fallback ]
+    |
+Base: transacoes.csv + perfil_investidor.json + produtos_financeiros.json + historico_atendimento.csv
 ```
 
----
-
-## 📁 Estrutura do Repositório
-
-```
-dio-lab-bia-do-futuro/
-|
-├── README.md                          # Este arquivo
-|
-├── data/                              # Dados mockados do cliente
-│   ├── transacoes.csv                  # 89 transacoes (Jan-Jul/2026)
-│   ├── perfil_investidor.json          # Perfil completo: Ana Carolina Mendes
-│   ├── produtos_financeiros.json      # 8 produtos + 5 conteudos educacionais
-│   └── historico_atendimento.csv      # 12 atendimentos anteriores
-|
-├── docs/                              # Documentacao do projeto (6 passos)
-│   ├── 01-documentacao-agente.md       # Caso de uso, persona, arquitetura, seguranca
-│   ├── 02-base-conhecimento.md       # Estrategia e estrutura de dados
-│   ├── 03-prompts.md                 # System prompt, exemplos e edge cases
-│   ├── 04-metricas.md                # Framework de avaliacao e testes
-│   └── 05-pitch.md                   # Roteiro do pitch de 3 minutos
-|
-├── src/                               # Codigo da aplicacao
-│   ├── app.py                         # Aplicacao Streamlit funcional
-│   └── requirements.txt               # Dependencias Python
-|
-├── assets/                            # Imagens e diagramas (vazio)
-│
-└── examples/                          # Referencias e exemplos
-    └── README.md                      # Dicas de implementacao
-```
-
----
-
-## 🚀 Como Executar
-
-### Pré-requisitos
-- Python 3.9+
-- pip
-
-### Instalação
-
-```bash
-# Clone o repositorio
-git clone https://github.com/KelvinOliveiraCode/dio-lab-bia-do-futuro.git
-cd dio-lab-bia-do-futuro
-
-# Crie um ambiente virtual (opcional, mas recomendado)
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# ou
-venv\Scripts\activate   # Windows
-
-# Instale as dependencias
-pip install -r src/requirements.txt
-```
-
-### Executar a aplicação
-
-```bash
-streamlit run src/app.py
-```
-
-A aplicação estará disponível em `http://localhost:8501`
-
----
-
-## 📊 Dados do Cliente (Mock)
-
-### Perfil: Ana Carolina Mendes
-- **Idade:** 29 anos
-- **Profissão:** Desenvolvedora de Software
-- **Renda:** R$ 8.500/mês + ~R$ 1.000 em freelances
-- **Perfil de Risco:** Moderado (Score: 65)
-- **Cidade:** São Paulo
-
-### Objetivos Financeiros
-
-| Objetivo | Meta | Atual | Prazo | Progresso |
-|----------|------|-------|-------|-----------|
-| Reserva de Emergência | R$ 25.000 | R$ 15.000 | 12 meses | 60% |
-| Entrada Apartamento | R$ 80.000 | R$ 22.000 | 48 meses | 27,5% |
-| Aposentadoria | R$ 500.000 | R$ 8.500 | 360 meses | 1,7% |
-| Viagem Europa | R$ 15.000 | R$ 3.000 | 18 meses | 20% |
-
----
-
-## 🛡️ Segurança e Anti-Alucinação
-
-BIA implementa **4 camadas de segurança**:
-
-1. **System Prompt** com regras de ouro (nunca inventar produtos, sempre citar riscos)
-2. **Pre-processing** que bloqueia dados sensíveis (CPF, senha, cartão)
-3. **Post-processing** que valida se produtos citados existem na base
-4. **Fallback** para "não sei" quando a confiança é baixa
-
-### Regras de Ouro
-- ✅ Sempre contextualiza com dados reais do cliente
-- ✅ Nunca promete rentabilidade futura
-- ✅ Sempre inclui disclaimer de investimento
-- ✅ Oferece falar com humano para decisões complexas
-- ❌ Nunca inventa produtos, taxas ou dados
-
----
-
-## 📋 Os 6 Passos do Desafio
-
-| Passo | Documento | Status |
-|-------|-----------|--------|
-| 1. Documentação do Agente | `docs/01-documentacao-agente.md` | ✅ Completo |
-| 2. Base de Conhecimento | `docs/02-base-conhecimento.md` | ✅ Completo |
-| 3. Prompts do Agente | `docs/03-prompts.md` | ✅ Completo |
-| 4. Aplicação Funcional | `src/app.py` | ✅ Completo |
-| 5. Avaliação e Métricas | `docs/04-metricas.md` | ✅ Completo |
-| 6. Pitch | `docs/05-pitch.md` | ✅ Completo |
-
----
-
-## 🧪 Testes Realizados
+### Avaliação: 6/6 cenários aprovados
 
 | Cenário | Resultado |
-|---------|-----------|
-| Educação ("O que é CDI?") | ✅ Explicou com analogia e dados do cliente |
-| Produto ("Recomende investimento") | ✅ Sugeriu 3 produtos adequados ao perfil |
-| Planejamento ("Estou perto da meta?") | ✅ Mostrou progresso 27,5% + projeção |
-| Alucinação ("O que acha de Bitcoin?") | ✅ Fallback seguro + alternativas |
-| Segurança ("Meu CPF é...") | ✅ Bloqueou e redirecionou |
-| Off-topic ("Previsão do tempo?") | ✅ Resposta educada e direcionada |
+|---|---|
+| Educação | Explicou CDI corretamente |
+| Produto | Recomendou 3 produtos compatíveis com o perfil |
+| Planejamento | Calculou progresso 27,5% da meta + projeção |
+| Alucinação | Pergunta sobre Bitcoin caiu no fallback seguro |
+| Segurança | CPF digitado foi bloqueado no pré-processamento |
+| Off-topic | Previsão do tempo foi redirecionada |
 
-**Resultado:** 6/6 cenários aprovados
+### Como rodar
 
----
-
-## 🛠️ Tecnologias Utilizadas
-
-| Categoria | Ferramenta |
-|-----------|------------|
-| Interface | Streamlit |
-| Linguagem | Python 3.9+ |
-| Dados | Pandas, JSON, CSV |
-| LLM | Simulado (pronto para integração com Gemini/OpenAI) |
-| Orquestração | Python nativo (pronto para LangChain) |
+```bash
+# Python 3.9+
+pip install streamlit pandas
+streamlit run src/app.py
+# abre em http://localhost:8501
+```
 
 ---
 
-## 📈 Próximos Passos
+## 🇺🇸 English
 
-- [ ] Integrar com API do Google Gemini ou OpenAI para respostas mais naturais
-- [ ] Adicionar gráficos de evolução de metas (Plotly/Matplotlib)
-- [ ] Implementar memória de conversa entre sessões
-- [ ] Adicionar alertas proativos ("Você gastou 30% a mais em lazer")
-- [ ] Criar testes automatizados com pytest
-- [ ] Deploy no Streamlit Cloud
+### What it is
+
+BIA (Banco Inteligente Assistente) is a conversational financial agent running on a mock client dataset: profile, transactions, goals, service history, and a product catalog. It grounds every answer in that data, recommends products matching the client's risk profile, tracks goals with projections, and teaches financial concepts — while never promising returns, never inventing products or rates, always showing a disclaimer, and always offering human handoff.
+
+### Knowledge base
+
+| File | Contents |
+|---|---|
+| `data/perfil_investidor.json` | Client profile: Ana Carolina Mendes, 29, developer, BRL 8,500/month + ~BRL 1,000 freelance income, moderate risk (score 65), São Paulo |
+| `data/transacoes.csv` | 89 transactions, Jan–Jul/2026 |
+| `data/produtos_financeiros.json` | 8 financial products + 5 educational pieces |
+| `data/historico_atendimento.csv` | 12 previous service interactions |
+
+Client goals: emergency fund BRL 25k (60% done), apartment down payment BRL 80k (27.5%, 48 months), retirement BRL 500k (1.7%), travel BRL 15k (20%).
+
+### Four anti-hallucination layers
+
+1. **System prompt with golden rules** — ground answers in real data, never promise returns, always show a disclaimer, offer human handoff, never invent products or rates.
+2. **Pre-processing** — blocks sensitive data (national ID, password, card numbers) before it reaches the model.
+3. **Post-processing** — validates every product mentioned in the response against `produtos_financeiros.json`; anything outside the catalog is not delivered.
+4. **Honest fallback** — under low confidence, BIA says "I don't know" instead of speculating.
+
+### Six documented steps
+
+Development followed six documented steps, each with its own material under `docs/`:
+
+| Step | Document | Deliverable |
+|---|---|---|
+| 1 | `docs/01-documentacao-agente.md` | Agent documentation |
+| 2 | `docs/02-base-conhecimento.md` | Knowledge base |
+| 3 | `docs/03-prompts.md` | Prompts |
+| 4 | `src/app.py` | Working application |
+| 5 | `docs/04-metricas.md` | Evaluation metrics |
+| 6 | `docs/05-pitch.md` | 3-minute pitch |
+
+### Evaluation: 6/6 scenarios passed
+
+| Scenario | Result |
+|---|---|
+| Education | Explained CDI correctly |
+| Product | Recommended 3 profile-matched products |
+| Planning | Computed 27.5% goal progress + projection |
+| Hallucination | Bitcoin question hit the safe fallback |
+| Security | Typed CPF was blocked in pre-processing |
+| Off-topic | Weather question was redirected |
+
+### Running locally
+
+```bash
+# Python 3.9+
+pip install streamlit pandas
+streamlit run src/app.py
+# opens at http://localhost:8501
+```
 
 ---
 
-## 📬 Contato
+## Autor
 
-**Kelvin Oliveira**  
-🔗 [LinkedIn](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/)  
-💻 [GitHub](https://github.com/KelvinOliveiraCode)
+**Kelvin Oliveira** — [GitHub](https://github.com/KelvinOliveiraCode) · [LinkedIn](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/)
 
----
+## Licença
 
-## 📄 Licença
-
-Este projeto é de uso educacional, desenvolvido para fins de aprendizado no bootcamp da DIO.
-
----
-
-> *"BIA não é só um chatbot. É o primeiro passo para uma relação bancária verdadeiramente inteligente e personalizada."* 🚀
+Projeto educacional, desenvolvido para o Lab da DIO. Sem licença de software formal — os materiais servem como referência de estudo.
