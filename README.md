@@ -1,217 +1,127 @@
-# 🤖 BIA — Banco Inteligente Assistente
+# BIA — Banco Inteligente Assistente
 
-> **Agente Financeiro Inteligente com IA Generativa**  
-> Projeto desenvolvido para o Lab "Construa Seu Assistente Virtual Com Inteligência Artificial" da [DIO](https://www.dio.me/)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-Interface-red)
+![Licenca](https://img.shields.io/badge/Licenca-Educacional-lightgrey)
 
----
+Assistente financeiro virtual que responde sobre gastos, investimentos e metas de um cliente usando apenas dados reais de uma base local, com quatro camadas de seguranca contra alucinacoes.
 
-## 👨‍💻 Autor
+## Problema / Por que existe
 
-**Kelvin Oliveira**  
-[LinkedIn](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/) | [GitHub](https://github.com/KelvinOliveiraCode)
+O cliente ganha bem, mas nao sabe para onde o dinheiro vai nem o que fazer com a sobra. A informacao financeira esta cheia de jargoes, e modelos de linguagem genericos podem inventar produtos, taxas ou rentabilidades que nao existem — um risco inaceitavel quando o assunto eh dinheiro de verdade. BIA existe para responder apenas o que esta na base de dados do cliente, nunca prometer ganhos futuros e admitir quando nao sabe.
 
----
+## O que faz
 
-## 🎯 Sobre o Projeto
+- Responde "Quanto gastei em lazer?" e soma as saidas da categoria de transacoes.csv (jan a jul de 2026), mostrando total e media mensal.
+- Responde "Onde investir R$ 5.000?" e lista produtos de produtos_financeiros.json compatíveis com o perfil de risco do cliente (moderado, score 65), com risco, liquidez e valor minimo de cada um.
+- Mostra o progresso das quatro metas de perfil_investidor.json (por exemplo: reserva de emergencia, R$ 15.000 de R$ 25.000, 60% concluido).
+- Explica conceitos como CDI, FII e imposto de renda com os cinco conteudos educacionais da base.
+- Compara dois produtos do catalogo lado a lado (risco, rentabilidade, liquidez, minimo).
+- Simula rendimento de CDB (juros compostos, IR regressivo de 17,5% em 12 meses).
+- Responde a assuntos fora de escopo (ex.: Bitcoin, previsao do tempo) dizendo que nao tem a informacao e sugerindo alternativas da base.
+- Recusa pedidos de dados sensiveis (CPF, senha, cartao) e redireciona para o app oficial do banco.
 
-**BIA** é um assistente virtual financeiro que utiliza IA generativa para educar e orientar jovens profissionais na jornada de organização financeira e investimentos. Diferente de chatbots tradicionais reativos, BIA é **proativa, personalizada e segura** — antecipando necessidades com base nos dados reais do cliente.
+Todo conteudo de investimento inclui o disclaimer: nao eh recomendacao de investimento.
 
-### O que BIA faz:
-- 💰 **Analisa gastos** com base no histórico de transações
-- 📈 **Recomenda investimentos** alinhados ao perfil de risco
-- 🎯 **Acompanha metas** financeiras com projeções
-- 📚 **Educa** sobre conceitos financeiros de forma simples
-- 🔒 **Garante segurança** — nunca inventa produtos ou dados
+## Stack
 
----
-
-## 🏗️ Arquitetura
-
-```
-Usuario (Chat/App)
-    |
-    v
-[ Streamlit Interface ]  <--->  [ Python Orquestrador ]
-    |                                    |
-    |                            [ Analise de Dados ]
-    |                                    |
-    +----------------------------+-------+-------+
-                                 |               |
-                         [ Base de Conhecimento ]  [ LLM (Simulado) ]
-                         - transacoes.csv         - Respostas
-                         - perfil_investidor.json   contextualizadas
-                         - produtos_financeiros.json
-                         - historico_atendimento.csv
-```
-
----
-
-## 📁 Estrutura do Repositório
-
-```
-dio-lab-bia-do-futuro/
-|
-├── README.md                          # Este arquivo
-|
-├── data/                              # Dados mockados do cliente
-│   ├── transacoes.csv                  # 89 transacoes (Jan-Jul/2026)
-│   ├── perfil_investidor.json          # Perfil completo: Ana Carolina Mendes
-│   ├── produtos_financeiros.json      # 8 produtos + 5 conteudos educacionais
-│   └── historico_atendimento.csv      # 12 atendimentos anteriores
-|
-├── docs/                              # Documentacao do projeto (6 passos)
-│   ├── 01-documentacao-agente.md       # Caso de uso, persona, arquitetura, seguranca
-│   ├── 02-base-conhecimento.md       # Estrategia e estrutura de dados
-│   ├── 03-prompts.md                 # System prompt, exemplos e edge cases
-│   ├── 04-metricas.md                # Framework de avaliacao e testes
-│   └── 05-pitch.md                   # Roteiro do pitch de 3 minutos
-|
-├── src/                               # Codigo da aplicacao
-│   ├── app.py                         # Aplicacao Streamlit funcional
-│   └── requirements.txt               # Dependencias Python
-|
-├── assets/                            # Imagens e diagramas (vazio)
-│
-└── examples/                          # Referencias e exemplos
-    └── README.md                      # Dicas de implementacao
-```
-
----
-
-## 🚀 Como Executar
-
-### Pré-requisitos
 - Python 3.9+
-- pip
+- Streamlit: interface de chat
+- pandas: leitura e agregacao de arquivos CSV
+- JSON: perfil do cliente, catalogo de produtos, conteudos educacionais
+- Nenhuma chave de API: src/app.py detecta intencoes por palavras-chave e responde com templates (simulacao de LLM, pronto para integracao com Gemini ou OpenAI)
 
-### Instalação
+## Como funciona
+
+Fluxo de uma mensagem:
+
+1. O usuario digita a pergunta na interface do Streamlit.
+2. O codigo classifica a intencao por palavras-chave (gastos, produto, planejamento, educacao, comparacao, simulacao, saudacao).
+3. Le os dados relevantes de data/ (CSV com pandas, JSON com a biblioteca json) e monta a resposta com dados reais do cliente.
+4. A resposta passa pelas quatro camadas de validacao abaixo antes de ser exibida.
+
+### Camada 1: System prompt (regras de ouro)
+
+Nunca inventar produtos, rentabilidades, taxas ou dados. Nunca prometer rentabilidade futura. Sempre citar o risco associado a qualquer investimento. Sempre incluir o disclaimer educacional. Sempre oferecer atendimento humano para decisoes complexas.
+
+### Camada 2: Pre-processamento
+
+Detecta e bloqueia dados sensiveis na mensagem do usuario (CPF no formato 000.000.000-00, numeros de cartao de credito) antes de gerar a resposta e redireciona para o app oficial do banco.
+
+### Camada 3: Post-processamento
+
+Verifica se todos os produtos citados na resposta existem no catalogo produtos_financeiros.json. Produtos fora da base sao substituidos por mensagem de fallback.
+
+### Camada 4: Fallback
+
+Quando a confianca eh baixa ou o assunto nao esta na base (previsao de mercado, conselho fiscal, ativos fora do catalogo), responde "nao tenho essa informacao com certeza no momento" e sugere duas a tres alternativas da base ou um especialista humano.
+
+Observacao: as camadas estao especificadas como regras de negocio em docs/03-prompts.md. O codigo atual de src/app.py eh uma simulacao — nao chama um modelo de linguagem e nao executa os filtros de pre e pos-processamento automaticamente.
+
+## Como rodar
 
 ```bash
-# Clone o repositorio
 git clone https://github.com/KelvinOliveiraCode/dio-lab-bia-do-futuro.git
 cd dio-lab-bia-do-futuro
 
-# Crie um ambiente virtual (opcional, mas recomendado)
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# ou
-venv\Scripts\activate   # Windows
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
 
-# Instale as dependencias
-pip install -r src/requirements.txt
-```
-
-### Executar a aplicação
-
-```bash
+pip install streamlit pandas
 streamlit run src/app.py
 ```
 
-A aplicação estará disponível em `http://localhost:8501`
+A aplicacao fica disponível em http://localhost:8501. Nao existe requirements.txt no repositorio; instale streamlit e pandas conforme acima.
 
----
+## Estrutura do projeto
 
-## 📊 Dados do Cliente (Mock)
+```
+dio-lab-bia-do-futuro/
+├── README.md
+├── src/
+│   └── app.py                    # Aplicacao Streamlit: intencoes, analise de dados, respostas
+├── data/
+│   ├── transacoes.csv            # 89 transacoes, jan a jul de 2026
+│   ├── perfil_investidor.json    # Perfil do cliente, 4 metas, risco moderado (score 65)
+│   ├── produtos_financeiros.json # 8 produtos + 5 conteudos educacionais
+│   └── historico_atendimento.csv # 12 atendimentos anteriores
+├── docs/
+│   ├── 01-documentacao-agente.md
+│   ├── 02-base-conhecimento.md
+│   ├── 03-prompts.md             # System prompt e 4 camadas de seguranca
+│   ├── 04-metricas.md            # Framework de avaliacao
+│   └── 05-pitch.md
+├── assets/                       # vazio
+└── examples/
+    └── README.md                 # Referencias de implementacao
+```
 
-### Perfil: Ana Carolina Mendes
-- **Idade:** 29 anos
-- **Profissão:** Desenvolvedora de Software
-- **Renda:** R$ 8.500/mês + ~R$ 1.000 em freelances
-- **Perfil de Risco:** Moderado (Score: 65)
-- **Cidade:** São Paulo
+## Trade-offs e decisoes
 
-### Objetivos Financeiros
+- Respostas simuladas em vez de LLM real: nao exige chave de API, roda offline e eh deterministico. Troca: nao gera linguagem natural alem dos templates e nao entende frases fora dos padroes de palavras-chave.
+- Detecao de intencao por palavras-chave: rapida, sem custo nem latencia de API. Troca: fragil a parafraseamento; intencoes desconhecidas vao para o fallback geral.
+- Dados carregados em memoria no inicio da sessao: sem banco de dados nem configuracao. Troca: nao suporta varios clientes nem historico longo; os dados sao recarregados a cada sessao (st.cache_data).
+- Constantes fixas na simulacao (CDI a 12% ao ano, IR regressivo de 17,5%): projecoes previsiveis para demonstracao. Troca: nao refletem o mercado real.
+- Arquivo unico src/app.py: facil de ler e rodar. Troca: dificil de manter à medida que o codigo cresce.
 
-| Objetivo | Meta | Atual | Prazo | Progresso |
-|----------|------|-------|-------|-----------|
-| Reserva de Emergência | R$ 25.000 | R$ 15.000 | 12 meses | 60% |
-| Entrada Apartamento | R$ 80.000 | R$ 22.000 | 48 meses | 27,5% |
-| Aposentadoria | R$ 500.000 | R$ 8.500 | 360 meses | 1,7% |
-| Viagem Europa | R$ 15.000 | R$ 3.000 | 18 meses | 20% |
+## Limitações conhecidas
 
----
+- Nao ha integracao com modelo de linguagem real (Gemini ou OpenAI); as respostas vem de templates.
+- Nao ha requirements.txt com dependencias travadas.
+- Os dados sao de um unico cliente, periodo fixo (jan a jul de 2026).
+- Nao ha autenticacao, atendimento a varios clientes nem persistencia de conversa entre reinicializacoes.
+- Nao ha testes automatizados.
+- Sem dados de mercado em tempo real; a simulacao usa taxas fixas.
+- assets/ esta vazio: sem imagens ou diagramas.
+- Os filtros de pre-processamento (bloqueio de CPF e cartao) e pos-processamento (verificacao de produtos citados) estao documentados em docs/03-prompts.md, mas nao sao executados pelo codigo atual de src/app.py.
 
-## 🛡️ Segurança e Anti-Alucinação
+## Licenca
 
-BIA implementa **4 camadas de segurança**:
+Uso educacional. Desenvolvido para o Lab "Construa Seu Assistente Virtual Com Inteligencia Artificial" da DIO.
 
-1. **System Prompt** com regras de ouro (nunca inventar produtos, sempre citar riscos)
-2. **Pre-processing** que bloqueia dados sensíveis (CPF, senha, cartão)
-3. **Post-processing** que valida se produtos citados existem na base
-4. **Fallback** para "não sei" quando a confiança é baixa
+## Autor
 
-### Regras de Ouro
-- ✅ Sempre contextualiza com dados reais do cliente
-- ✅ Nunca promete rentabilidade futura
-- ✅ Sempre inclui disclaimer de investimento
-- ✅ Oferece falar com humano para decisões complexas
-- ❌ Nunca inventa produtos, taxas ou dados
-
----
-
-## 📋 Os 6 Passos do Desafio
-
-| Passo | Documento | Status |
-|-------|-----------|--------|
-| 1. Documentação do Agente | `docs/01-documentacao-agente.md` | ✅ Completo |
-| 2. Base de Conhecimento | `docs/02-base-conhecimento.md` | ✅ Completo |
-| 3. Prompts do Agente | `docs/03-prompts.md` | ✅ Completo |
-| 4. Aplicação Funcional | `src/app.py` | ✅ Completo |
-| 5. Avaliação e Métricas | `docs/04-metricas.md` | ✅ Completo |
-| 6. Pitch | `docs/05-pitch.md` | ✅ Completo |
-
----
-
-## 🧪 Testes Realizados
-
-| Cenário | Resultado |
-|---------|-----------|
-| Educação ("O que é CDI?") | ✅ Explicou com analogia e dados do cliente |
-| Produto ("Recomende investimento") | ✅ Sugeriu 3 produtos adequados ao perfil |
-| Planejamento ("Estou perto da meta?") | ✅ Mostrou progresso 27,5% + projeção |
-| Alucinação ("O que acha de Bitcoin?") | ✅ Fallback seguro + alternativas |
-| Segurança ("Meu CPF é...") | ✅ Bloqueou e redirecionou |
-| Off-topic ("Previsão do tempo?") | ✅ Resposta educada e direcionada |
-
-**Resultado:** 6/6 cenários aprovados
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-| Categoria | Ferramenta |
-|-----------|------------|
-| Interface | Streamlit |
-| Linguagem | Python 3.9+ |
-| Dados | Pandas, JSON, CSV |
-| LLM | Simulado (pronto para integração com Gemini/OpenAI) |
-| Orquestração | Python nativo (pronto para LangChain) |
-
----
-
-## 📈 Próximos Passos
-
-- [ ] Integrar com API do Google Gemini ou OpenAI para respostas mais naturais
-- [ ] Adicionar gráficos de evolução de metas (Plotly/Matplotlib)
-- [ ] Implementar memória de conversa entre sessões
-- [ ] Adicionar alertas proativos ("Você gastou 30% a mais em lazer")
-- [ ] Criar testes automatizados com pytest
-- [ ] Deploy no Streamlit Cloud
-
----
-
-## 📬 Contato
-
-**Kelvin Oliveira**  
-🔗 [LinkedIn](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/)  
-💻 [GitHub](https://github.com/KelvinOliveiraCode)
-
----
-
-## 📄 Licença
-
-Este projeto é de uso educacional, desenvolvido para fins de aprendizado no bootcamp da DIO.
-
----
-
-> *"BIA não é só um chatbot. É o primeiro passo para uma relação bancária verdadeiramente inteligente e personalizada."* 🚀
+Kelvin Oliveira — [LinkedIn](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/) | [GitHub](https://github.com/KelvinOliveiraCode)
