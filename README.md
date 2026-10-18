@@ -14,7 +14,7 @@
 
 ## O que é
 
-BIA ,  Agente financeiro bancário com IA generativa, anti-alucinação em 4 camadas | Banking AI agent with 4-layer anti-hallucination
+BIA ,  Agente financeiro bancário com IA generativa, anti-alucinação em 4 camadas
 
 ---
 
