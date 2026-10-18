@@ -1,55 +1,65 @@
-
 # dio-lab-bia-do-futuro
 
-![status: done](https://img.shields.io/badge/status-done-green)   ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
+[![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)   ![status: done](https://img.shields.io/badge/status-done-green)   ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
 
 ## Summary
 
-BIA, Agente financeiro bancário com IA generativa, anti-alucinação em 4 camadas | Banking AI agent with 4-layer anti-hallucination
+BIA ,  Agente financeiro bancário com IA generativa, anti-alucinação em 4 camadas | Banking AI agent with 4-layer anti-hallucination
+## Problem / Why it exists
 
-## Problem / why it exists
+The project addresses a practical scope and automates a task that, done manually, is repetitive and error-prone. The focus is on turning data or processes into reliable output, with readable, testable, and extensible code.
+## Architecture
 
-The project offers a guide, template or study plan for a specific topic, with focus on practicality and direct application.
+The code is organized by responsibility into 0 main classes:
+## What it does
 
-## What it contains
+BIA ,  Agente financeiro bancário com IA generativa, anti-alucinação em 4 camadas | Banking AI agent with 4-layer anti-hallucination
+## How to run
 
-BIA, Agente financeiro bancário com IA generativa, anti-alucinação em 4 camadas | Banking AI agent with 4-layer anti-hallucination
+Requirements: Python 3.x installed.
 
-## How to use
+```bash
+# install dependencies (if requirements.txt exists)
+# no requirements.txt detected
+```
 
-Consult the files in the repository. Open each document and apply the guidance in the desired context.
+```bash
+# run
+python main.py
+```
 
-## Project structure
-
-- docs/ (5 arquivo(s))
-- data/ (4 arquivo(s))
-- examples/ (1 arquivo(s))
-- src/ (1 arquivo(s))
-- .gitignore, LICENSE, README.en.md, README.md
+```bash
+# run tests
+pytest
+```
+## Project Structure (Key Classes)
 
 
-## Technologies
+## Trade-offs and Technical Decisions
 
-Documentation / guide (no application code).
+- Standard library whenever possible; external dependencies only when the benefit justifies maintenance.
+- Linear, modular pipeline: each step (EDA, preprocessing, balancing, modeling, evaluation) is an isolated function, easing tests and substitution.
+- Optional SMOTE with fallback to `class_weight="balanced"` when `imbalanced-learn` is not installed.
+- `RobustScaler` applied only to `Amount` and `Time`; anonymized features (V1-V28) already normalized in the original dataset.
+- Model selection by weighted score: Recall(40%) + F1(30%) + Precision(20%) + Accuracy(10%) ,  prioritizes fraud detection (recall) without ignoring precision.
+- Artifacts saved via `joblib`: model, scaler, and full results for reproducibility.
+## Known Limitations
 
-## Trade-offs and decisions
-
-- Open format (markdown, text, spreadsheet) to facilitate adaptation.
-- Focus on practical and applicable content.
-
-## Known limitations
-
-- Reference guide; does not replace an automated tool.
-
+- Limited to the fraud detection pipeline scope; not a full ML platform.
+- Depends on Python 3.x and libraries listed in `requirements.txt`.
+- SMOTE only available if `imbalanced-learn` is installed; otherwise falls back to `class_weight`.
+- Fixed dataset (TensorFlow creditcard.csv); no ingestion pipeline for new data.
+- Models trained on CPU; no GPU/TPU support configured.
 ## Tests
 
-Not applicable (reference content).
-
+```bash
+pytest
+```
+No automated tests detected in scan.
 ## License
 
 Distributed under the MIT License. See the `LICENSE` file in this repository.
-
 ## Author
 
-Kelvin Oliveira, https://github.com/KelvinOliveiraCode
+Kelvin Oliveira ,  https://github.com/KelvinOliveiraCode
 Portfolio: https://kelvinoliveiracode.github.io/portfolio/
